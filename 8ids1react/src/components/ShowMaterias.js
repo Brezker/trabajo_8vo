@@ -118,11 +118,16 @@ const getAllSubjects = async () =>{
     })
   }
 
-
-return (
-    <div>
+  const irMenu = async (e) => {
+    navigateTo('/menu')
+  }
+  
+  const end = <Button label="Menu" severity="info" icon="pi pi-arrow-circle-left" iconPos="left" onClick={irMenu}/>;
+  
+  return (
       <div>
-      <Menubar model={items}/>
+        <div>
+        <Menubar model={items} end={end}/>
       </div>
         <div className="card">
             <DataTable value={subjects} responsiveLayout="scroll">

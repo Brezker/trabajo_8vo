@@ -45,7 +45,7 @@ const LoginComponent = () => {
       if(response.data.acceso === "Ok")
       {
         localStorage.setItem('token',"Ok")
-        navigateTo('/alumnos')
+        navigateTo('/menu')
       }
       else
       {

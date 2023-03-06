@@ -13,6 +13,8 @@ import NESubject from './components/NESubject';
 import ShowMaterias from './components/ShowMaterias';
 import LoginComponent from './components/LoginComponent';
 
+import StaticHome from './components/StaticHome';
+import StaticMenu from './components/StaticMenu';
 
 import {BrowserRouter, Route, Routes, Navigate} from 'react-router-dom';
 
@@ -23,7 +25,9 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-            <Route path="/" element={<LoginComponent/>}/>
+            <Route path="/" element={<StaticHome/>}/>
+            <Route path="/login" element={<LoginComponent/>}/>
+            
             <Route path="/alumnos" 
             element={isLoggedIn ? <ShowAlumnos/> : <Navigate to="/" />}/>
             <Route path="/student/ne/:_id?" 
@@ -36,6 +40,9 @@ function App() {
             element={isLoggedIn ? <ShowMaterias/> : <Navigate to="/" />}/>
             <Route path="/s/subject/ns/:_id?" 
              element={isLoggedIn ? <NESubject/> : <Navigate to="/" />}/>
+
+            <Route path="/menu" 
+              element={isLoggedIn ? <StaticMenu/> : <Navigate to="/" />}/>
         </Routes>
       </BrowserRouter>
     </div>

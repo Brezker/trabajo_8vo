@@ -6,11 +6,12 @@ import { Menubar } from 'primereact/menubar';
 //import { useNavigate } from 'react-router';
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'primereact/button';
+import { Card } from 'primereact/card';
  
 
 
-const ShowMaestros = () => {
-  const [teachers, setTeachers] = useState([]);
+const StaticMenu = () => {
+  const [students, setStudents] = useState([]);
 const endpoint = 'http://127.0.0.1:8000/api';
 
 let navigate = useNavigate();
@@ -21,20 +22,20 @@ function navigateTo(string){
 
 const bodyTemplate = (rowData) => {
   return <div>
-  <Button icon="pi pi-file-edit" iconPos="right" onClick={()=> editTeacher(rowData)}/>
-  <Button icon="pi pi-trash" iconPos="right" onClick={()=> deleteTeacher(rowData.id)}/>
+  <Button icon="pi pi-file-edit" iconPos="right" onClick={()=> editStudent(rowData)}/>
+  <Button icon="pi pi-trash" iconPos="right" onClick={()=> deleteStudent(rowData.id)}/>
   </div>;
 
 }
 
-const editTeacher = (row) =>{
+const editStudent = (row) =>{
   
-  navigateTo ('teacher/nm/' + row.id);
+  navigateTo ('student/ne/' + row.id);
   console.log("Click: " + row.nombre);
 }
 
   useEffect(() => {
-    getAllTeachers();
+    getAllStudents();
 }, []);
 
 
@@ -77,6 +78,13 @@ const items = [
     icon:'pi pi-user',
     command: (event) => {
       navigateTo('/alumnos')
+    }
+  },
+  {
+    label:'Maestro',
+    icon:'pi pi-users',
+    command: (event) => {
+      navigateTo('/m')
  }
 },
 {
@@ -97,53 +105,42 @@ const items = [
 ];
 
 
-const getAllTeachers = async () =>{
+const getAllStudents = async () =>{
   
-    await axios.get(`${endpoint}/maestros`)
+    await axios.get(`${endpoint}/alumnos`)
     .then(response => {
       console.log(response.data);
-      setTeachers(response.data)
+      setStudents(response.data)
     }).catch(function (error){
       console.log(error);
     })
   }
 
-  const deleteTeacher = async (_id) => {
-    await axios.post(`${endpoint}/maestro/borrar`,{
-      id: _id
-    }).then(response => {
-       getAllTeachers();
-    }).catch(function (error){
-       console.log(error);
-    })
-  }
+const deleteStudent = async (_id) => {
+  await axios.post(`${endpoint}/alumno/borrar`,{
+    id: _id
+  }).then(response => {
+      getAllStudents();
+  }).catch(function (error){
+      console.log(error);
+  })
+}
 
-  const irMenu = async (e) => {
-    navigateTo('/menu')
-  }
-  
-  const end = <Button label="Menu" severity="info" icon="pi pi-arrow-circle-left" iconPos="left" onClick={irMenu}/>;
-  
-  return (
+return (
+    <div>
       <div>
-        <div>
-        <Menubar model={items} end={end}/>
+      <Menubar model={items}/>
       </div>
-        <div className="card">
-            <DataTable value={teachers} responsiveLayout="scroll">
-                <Column field="id" header="ID"></Column>
-                <Column field="nombre" header="Nombre"></Column>
-                <Column field="app" header="Apellido paterno"></Column>
-                <Column field="apm" header="Apelido materno"></Column>
-                <Column field="nocedula" header="Cedula"></Column>
-                <Column field="sexo" header="Sexo"></Column>
-                <Column field="edad" header="Edad"></Column>
-                <Column field="nombre_materias" header="materias"></Column>
-                <Column header="Acciones" body={bodyTemplate}></Column>
-            </DataTable>
-        </div>
+      <div>
+      <Card title="Menu Principal">
+          <p className="m-0">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae 
+              numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!
+          </p>
+      </Card>
+      </div>
     </div>
   )
 }
 
-export default ShowMaestros
+export default StaticMenu

@@ -108,21 +108,26 @@ const getAllStudents = async () =>{
     })
   }
 
-  const deleteStudent = async (_id) => {
-    await axios.post(`${endpoint}/alumno/borrar`,{
-      id: _id
-    }).then(response => {
-       getAllStudents();
-    }).catch(function (error){
-       console.log(error);
-    })
-  }
+const deleteStudent = async (_id) => {
+  await axios.post(`${endpoint}/alumno/borrar`,{
+    id: _id
+  }).then(response => {
+      getAllStudents();
+  }).catch(function (error){
+      console.log(error);
+  })
+}
 
+const irMenu = async (e) => {
+  navigateTo('/menu')
+}
+
+const end = <Button label="Menu" severity="info" icon="pi pi-arrow-circle-left" iconPos="left" onClick={irMenu}/>;
 
 return (
     <div>
       <div>
-      <Menubar model={items}/>
+      <Menubar model={items} end={end}/>
       </div>
         <div className="card">
             <DataTable value={students} responsiveLayout="scroll">
