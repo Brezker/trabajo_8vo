@@ -38,6 +38,9 @@ class maestroController extends Controller
             $maestro->id_materia = $request->id_materia;
             
             $maestro->save();
+            
+            Log::debug('metohodo Guardar Maestro-> Correcto');
+
         } catch (Exception $e) {
             Log::debug('metohodo Guardar Maestro->'.$e->getMessage());
             $maestro = m_maestro::find($request->id);

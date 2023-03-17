@@ -15,6 +15,7 @@ import LoginComponent from './components/LoginComponent';
 
 import StaticHome from './components/StaticHome';
 import StaticMenu from './components/StaticMenu';
+import StaticPrivac from './components/StaticPrivac';
 
 import {BrowserRouter, Route, Routes, Navigate} from 'react-router-dom';
 
@@ -27,6 +28,7 @@ function App() {
         <Routes>
             <Route path="/" element={<StaticHome/>}/>
             <Route path="/login" element={<LoginComponent/>}/>
+            <Route path="/privac" element={<StaticPrivac/>}/>
             
             <Route path="/alumnos" 
             element={isLoggedIn ? <ShowAlumnos/> : <Navigate to="/" />}/>

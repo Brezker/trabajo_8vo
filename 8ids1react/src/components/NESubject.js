@@ -102,7 +102,7 @@ const NESubject = () => {
         </span>
         <br></br>
         <span className="p-float-label">
-            <InputText id='duracion' value={subject.duracion} onChange={inputChange} name='duracion'/>
+            <InputText id='duracion' type='number' value={subject.duracion} onChange={inputChange} name='duracion'/>
             <label htmlFor="duracion">Duracion</label>
         </span>
         <br></br>

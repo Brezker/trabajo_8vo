@@ -32,8 +32,10 @@ class materiaController extends Controller
 
         $materia->save();
 
+        Log::debug('metohodo Guardar Materia-> Correcto');
+
         }catch(Exception $e){
-            Log::debug('metohodo Guardar materia->'.$e->getMessage());
+            Log::debug('metohodo Guardar Materia->'.$e->getMessage());
             $materia = M_materia::find($request->id);
         }
 

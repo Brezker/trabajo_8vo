@@ -17,12 +17,18 @@ const irLogin = async (e) => {
   navigateTo('/login')
 }
 
-const end = <Button label="Login" severity="info" icon="pi pi-user" iconPos="right" onClick={irLogin}/>;
+const irPrivac = async (e) => {
+  navigateTo('/privac')
+}
+
+const end = <Button label="Login" severity="info" icon="pi pi-user" iconPos="right" onClick={irLogin}/> 
+
+const start = <Button label="Aviso de Privacidad" iconPos="right" onClick={irPrivac}/>;
 
 return (
     <div>
       <div className="card">
-      <Menubar end={end} />
+      <Menubar start={start} end={end} />
       </div>
       <div>
       <Card title="Home">
