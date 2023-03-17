@@ -39,7 +39,7 @@ Route::get('/materia', [materiaController::class, 'materia']);
 Route::post('/materia', [materiaController::class, 'guardar']);
 Route::post('/materia/borrar', [materiaController::class, 'borrar']);
 
-Route::get('/paselista', [paselistaController::class, 'pasedelista']);
+Route::post('/paselista', [paselistaController::class, 'pasedelista']);
 Route::post('/paselistaguard', [paselistaController::class, 'guardar']);
 
 Route::get('/combo_materias', [materiaController::class, 'combo']);
