@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\alumnoController;
 use App\Http\Controllers\maestroController;
 use App\Http\Controllers\materiaController;
+use App\Http\Controllers\paselistaController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -38,9 +39,10 @@ Route::get('/materia', [materiaController::class, 'materia']);
 Route::post('/materia', [materiaController::class, 'guardar']);
 Route::post('/materia/borrar', [materiaController::class, 'borrar']);
 
+Route::get('/paselista', [paselistaController::class, 'pasedelista']);
+Route::post('/paselistaguard', [paselistaController::class, 'guardar']);
 
 Route::get('/combo_materias', [materiaController::class, 'combo']);
-
 
 Route::post('login',function(Request $request){
     if(Auth::attempt(['email' => $request->email, 'password'=> $request->password])){
