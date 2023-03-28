@@ -122,35 +122,35 @@ const NETeacher = () => {
 
   return (
     <div>
-        <Card title="Maestro" subTitle="Subtitle" style={{ width: '25em' }} footer={footer}>
+        <Card title="Maestro" subTitle="Subtitle" className="md:w-25rem" footer={footer}>
             
         <span className="p-float-label">
-            <InputText id='nombre' value={teacher.nombre} onChange={inputChange} name='nombre'/>
+            <InputText id='nombre' value={teacher.nombre} onChange={inputChange} name='nombre' className="p-inputtext-sm"/>
             <label htmlFor="nombre">Nombre</label>
         </span>
         <br></br>
         <span className="p-float-label">
-            <InputText id='app' value={teacher.app} onChange={inputChange} name='app'/>
+            <InputText id='app' value={teacher.app} onChange={inputChange} name='app' className="p-inputtext-sm"/>
             <label htmlFor="app">Apellido Paterno</label>
         </span>
         <br></br>
         <span className="p-float-label">
-            <InputText id='apm' value={teacher.apm} onChange={inputChange} name='apm'/>
+            <InputText id='apm' value={teacher.apm} onChange={inputChange} name='apm' className="p-inputtext-sm"/>
             <label htmlFor="apm">Apellido Materno</label>
         </span>
         <br></br>
         <span className="p-float-label">
-            <InputText id='nocedula' value={teacher.nocedula} onChange={inputChange} name='nocedula'/>
+            <InputText id='nocedula' value={teacher.nocedula} onChange={inputChange} name='nocedula' className="p-inputtext-sm"/>
             <label htmlFor="nocedula">Cedula</label>
         </span>
         <br></br>
         <span className="p-float-label">
-            <InputText id='sexo' value={teacher.sexo} onChange={inputChange} name='sexo'/>
+            <InputText id='sexo' value={teacher.sexo} onChange={inputChange} name='sexo' className="p-inputtext-sm"/>
             <label htmlFor="sexo">Sexo</label>
         </span>
         <br></br>
         <span className="p-float-label">
-            <InputText id='edad' type='number' value={teacher.edad} onChange={inputChange} name='edad'/>
+            <InputText id='edad' type='number' value={teacher.edad} onChange={inputChange} name='edad' keyfilter="int" className="p-inputtext-sm"/>
             <label htmlFor="edad">Edad</label>
         </span>
         <br></br>

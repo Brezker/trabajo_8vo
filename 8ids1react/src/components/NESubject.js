@@ -94,25 +94,25 @@ const NESubject = () => {
 
   return (
     <div>
-        <Card title="Materia" subTitle="Subtitle" style={{ width: '25em' }} footer={footer}>
+        <Card title="Materia" subTitle="Subtitle" className="md:w-25rem" footer={footer}>
             
         <span className="p-float-label">
-            <InputText id='nombre' value={subject.nombre} onChange={inputChange} name='nombre'/>
+            <InputText id='nombre' value={subject.nombre} onChange={inputChange} name='nombre' className="p-inputtext-sm"/>
             <label htmlFor="nombre">Materia</label>
         </span>
         <br></br>
         <span className="p-float-label">
-            <InputText id='duracion' type='number' value={subject.duracion} onChange={inputChange} name='duracion'/>
+            <InputText id='duracion' type='number' value={subject.duracion} onChange={inputChange} name='duracion' className="p-inputtext-sm" keyfilter="int"/>
             <label htmlFor="duracion">Duracion</label>
         </span>
         <br></br>
         <span className="p-float-label">
-            <InputText id='profesor' value={subject.profesor} onChange={inputChange} name='profesor'/>
+            <InputText id='profesor' value={subject.profesor} onChange={inputChange} name='profesor' className="p-inputtext-sm"/>
             <label htmlFor="profesor">Profesor</label>
         </span>
         <br></br>
         <span className="p-float-label">
-            <InputText id='dias' type='number' value={subject.dias} onChange={inputChange} name='dias'/>
+            <InputText id='dias' type='number' value={subject.dias} onChange={inputChange} name='dias' className="p-inputtext-sm" keyfilter="int"/>
             <label htmlFor="dias">Dias</label>
         </span>
         <br></br>

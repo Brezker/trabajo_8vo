@@ -22,7 +22,7 @@ function navigateTo(string){
 const bodyTemplate = (rowData) => {
   return <div>
   <Button icon="pi pi-file-edit" iconPos="right" onClick={()=> editTeacher(rowData)}/>
-  <Button icon="pi pi-trash" iconPos="right" onClick={()=> deleteTeacher(rowData.id)}/>
+  <Button icon="pi pi-trash" iconPos="right" className='p-button-danger' onClick={()=> deleteTeacher(rowData.id)}/>
   </div>;
 
 }
