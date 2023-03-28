@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
+import { Chips } from 'primereact/chips';
 import { InputText } from 'primereact/inputtext';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Dropdown } from 'primereact/dropdown';
+import { useForm } from "react-hook-form";
 
 const NEStudent = () => {
     const endpoint = 'http://127.0.0.1:8000/api';
@@ -39,6 +41,7 @@ const NEStudent = () => {
 
         })
         navigateTo('/alumnos')
+        //Comentar para ver el log.
     }
 
     const volverVista = async (e) => {
@@ -48,7 +51,7 @@ const NEStudent = () => {
 
     const footer = (
         <span>
-            <Button label="Save" onClick={guardarDatos} icon="pi pi-check" />
+            <Button type="submit" label="Save" onClick={guardarDatos} icon="pi pi-check" />
             <Button label="Cancel" icon="pi pi-times" className="p-button-secondary ml-2" onClick={volverVista} />
         </span>
     );
@@ -90,6 +93,8 @@ const NEStudent = () => {
         })
     }
 
+    const { register, handleSubmit } = useForm();
+
     const dropdownChange = (event) =>{
         console.log("dropdownChange")
         console.log(event.target.name)
@@ -118,35 +123,34 @@ const NEStudent = () => {
 
   return (
     <div>
-        <Card title="Estudiante" subTitle="Subtitle" style={{ width: '25em' }} footer={footer}>
-            
+        <Card title="Estudiante" className="md:w-25rem" footer={footer}>
         <span className="p-float-label">
-            <InputText id='nombre' value={student.nombre} onChange={inputChange} name='nombre' required/>
+            <InputText id='nombre' value={student.nombre} onChange={inputChange} className="p-inputtext-sm" name='nombre' required/>
             <label htmlFor="nombre">Nombre</label>
         </span>
         <br></br>
         <span className="p-float-label">
-            <InputText id='app' value={student.app} onChange={inputChange} name='app' required/>
+            <InputText id='app' value={student.app} onChange={inputChange} className="p-inputtext-sm" name='app' required/>
             <label htmlFor="app">Apellido Paterno</label>
         </span>
         <br></br>
         <span className="p-float-label">
-            <InputText id='apm' value={student.apm} onChange={inputChange} name='apm' required/>
+            <InputText id='apm' value={student.apm} onChange={inputChange} className="p-inputtext-sm" name='apm'/>
             <label htmlFor="apm">Apellido Materno</label>
         </span>
         <br></br>
         <span className="p-float-label">
-            <InputText id='matricula' value={student.matricula} onChange={inputChange} name='matricula' required/>
+            <InputText id='matricula' value={student.matricula} onChange={inputChange} className="p-inputtext-sm" name='matricula' required/>
             <label htmlFor="matricula">Matricula</label>
         </span>
         <br></br>
         <span className="p-float-label">
-            <InputText id='sexo' value={student.sexo} onChange={inputChange} name='sexo' required/>
+            <InputText id='sexo' value={student.sexo} onChange={inputChange} name='sexo' className="p-inputtext-sm" required/>
             <label htmlFor="sexo">Sexo</label>
         </span>
         <br></br>
         <span className="p-float-label">
-            <InputText id='edad' type='number' value={student.edad} onChange={inputChange} name='edad' required/>
+            <InputText id='edad' type='number' keyfilter="int" className="p-inputtext-sm" value={student.edad} onChange={inputChange} name='edad' required/>
             <label htmlFor="edad">Edad</label>
         </span>
         <br></br>
@@ -156,8 +160,7 @@ const NEStudent = () => {
         onChange={dropdownChange}
         options={optionList} 
         optionLabel="name" 
-        placeholder="Seleccciona Materia" className="w-full md:w-14rem" required/>
-
+        placeholder="Seleccciona Materia" className="w-full md:w-14rem p-inputtext-sm" required/>
         </Card>
     </div>
   )

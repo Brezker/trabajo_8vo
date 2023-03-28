@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
+import React, { useState, useEffect, useRef } from 'react';
+import { DeferredContent } from 'primereact/deferredcontent';
 import axios from 'axios';
 import { Menubar } from 'primereact/menubar';
 //import { useNavigate } from 'react-router';
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
- 
-
+import { Toast } from 'primereact/toast';
+import { Splitter, SplitterPanel } from 'primereact/splitter';
 
 const StaticMenu = () => {
   const [students, setStudents] = useState([]);
@@ -126,6 +125,12 @@ const deleteStudent = async (_id) => {
   })
 }
 
+const toast = useRef(null);
+
+const onImageLoad = () => {
+  toast.current.show({ severity: 'success', summary: 'Success', detail: 'Image loaded' });
+};
+
 return (
     <div>
       <div>
@@ -139,6 +144,18 @@ return (
           </p>
       </Card>
       </div>
+      <div className="card">
+          <p style={{marginBottom: '30rem', textAlign: 'center'}}>Scroll down to lazy load an image.</p>
+          <Toast ref={toast} />
+          <DeferredContent onLoad={onImageLoad}>
+              <img className="w-full md:w-30rem md:block md:mx-auto" src="https://primefaces.org/cdn/primereact/images/galleria/galleria3.jpg" alt="Prime" />
+          </DeferredContent>
+      </div>
+      <Splitter style={{ height: '300px' }}>
+            <SplitterPanel className="flex align-items-center justify-content-center"><img className="w-full md:w-30rem md:block md:mx-auto" src="https://primefaces.org/cdn/primereact/images/galleria/galleria3.jpg" alt="Prime" />Panel 1</SplitterPanel>
+            <SplitterPanel className="flex align-items-center justify-content-center">Panel 2
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae</SplitterPanel>
+        </Splitter>
     </div>
   )
 }

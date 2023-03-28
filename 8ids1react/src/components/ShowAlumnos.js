@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import axios from 'axios';
@@ -6,8 +6,7 @@ import { Menubar } from 'primereact/menubar';
 //import { useNavigate } from 'react-router';
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'primereact/button';
- 
-
+import { Toast } from 'primereact/toast';
 
 const ShowAlumnos = () => {
   const [students, setStudents] = useState([]);
@@ -26,13 +25,19 @@ const bodyTemplate = (rowData) => {
   </div>;
 }
 
+const toast = useRef(null);
+
 const guardarAsistencia = async (rowData, asistio) => {
   await axios.post(`${endpoint}/paselistaguard`, {
     id_alumno: rowData.id,
     asistio: asistio,
   }).then(response => {
     console.log(response.data)
-    //toast.current.show({ severity: 'success', sumary:'Asistio', detail: 'Asistio', life: 2500});
+    if (asistio) {
+      toast.current.show({ severity: 'success', summary: 'Asistencia Guardada', detail: 'El estudiante asistio' });
+    } else {
+      toast.current.show({ severity: 'error', summary: 'Asistencia Guardada', detail: 'El estudiante no asistio' });
+    }
   }).catch(function (error){
     console.log(error)
   })
@@ -40,6 +45,7 @@ const guardarAsistencia = async (rowData, asistio) => {
 
 const bodyTemplate2 = (rowData) => {
   return <div>
+  <Toast ref={toast} />
   <Button icon="pi pi-check" iconPos="right" className='p-button-success' onClick={()=> guardarAsistencia(rowData, true)}/>
   <Button icon="pi pi-times" iconPos="right" className='p-button-danger' onClick={()=> guardarAsistencia(rowData, false)}/>
   </div>;
