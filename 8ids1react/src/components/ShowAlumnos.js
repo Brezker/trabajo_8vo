@@ -22,9 +22,28 @@ function navigateTo(string){
 const bodyTemplate = (rowData) => {
   return <div>
   <Button icon="pi pi-file-edit" iconPos="right" onClick={()=> editStudent(rowData)}/>
-  <Button icon="pi pi-trash" iconPos="right" onClick={()=> deleteStudent(rowData.id)}/>
+  <Button icon="pi pi-trash" iconPos="right" className='p-button-danger' onClick={()=> deleteStudent(rowData.id)}/>
   </div>;
+}
 
+const guardarAsistencia = async (rowData, asistio) => {
+  await axios.post(`${endpoint}/paselistaguard`, {
+    id_alumno: rowData.id,
+    asistio: asistio,
+  }).then(response => {
+    console.log(response.data)
+    //toast.current.show({ severity: 'success', sumary:'Asistio', detail: 'Asistio', life: 2500});
+  }).catch(function (error){
+    console.log(error)
+  })
+};
+
+const bodyTemplate2 = (rowData) => {
+  return <div>
+  <Button icon="pi pi-check" iconPos="right" className='p-button-success' onClick={()=> guardarAsistencia(rowData, true)}/>
+  <Button icon="pi pi-times" iconPos="right" className='p-button-danger' onClick={()=> guardarAsistencia(rowData, false)}/>
+  </div>;
+  
 }
 
 const editStudent = (row) =>{
@@ -140,6 +159,7 @@ return (
                 <Column field="edad" header="Edad"></Column>
                 <Column field="nombre_materias" header="materias"></Column>
                 <Column header="Acciones" body={bodyTemplate}></Column>
+                <Column header="Asistencia" body={bodyTemplate2}></Column>
             </DataTable>
         </div>
     </div>

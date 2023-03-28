@@ -12,7 +12,6 @@ const NEStudent = () => {
     const {_id} = useParams();
     let navigate = useNavigate();
 
-
     function navigateTo(string){
     navigate(string);
     }
@@ -26,9 +25,7 @@ const NEStudent = () => {
             console.log(response.data)
             setOptionList(response.data)
 
-
         }) 
-        
         
     }
 
@@ -80,12 +77,12 @@ const NEStudent = () => {
         })
     }
 
-
-
     const inputChange = (event) =>{
         console.log("handleInputChange")
         console.log(event.target.name)
         console.log(event.target.value)
+
+
         
         setStudent ({
             ...student,
@@ -119,40 +116,37 @@ const NEStudent = () => {
         obtenerMaterias();
     }, [])
 
-
-
-
   return (
     <div>
         <Card title="Estudiante" subTitle="Subtitle" style={{ width: '25em' }} footer={footer}>
             
         <span className="p-float-label">
-            <InputText id='nombre' value={student.nombre} onChange={inputChange} name='nombre'/>
+            <InputText id='nombre' value={student.nombre} onChange={inputChange} name='nombre' required/>
             <label htmlFor="nombre">Nombre</label>
         </span>
         <br></br>
         <span className="p-float-label">
-            <InputText id='app' value={student.app} onChange={inputChange} name='app'/>
+            <InputText id='app' value={student.app} onChange={inputChange} name='app' required/>
             <label htmlFor="app">Apellido Paterno</label>
         </span>
         <br></br>
         <span className="p-float-label">
-            <InputText id='apm' value={student.apm} onChange={inputChange} name='apm'/>
+            <InputText id='apm' value={student.apm} onChange={inputChange} name='apm' required/>
             <label htmlFor="apm">Apellido Materno</label>
         </span>
         <br></br>
         <span className="p-float-label">
-            <InputText id='matricula' value={student.matricula} onChange={inputChange} name='matricula'/>
+            <InputText id='matricula' value={student.matricula} onChange={inputChange} name='matricula' required/>
             <label htmlFor="matricula">Matricula</label>
         </span>
         <br></br>
         <span className="p-float-label">
-            <InputText id='sexo' value={student.sexo} onChange={inputChange} name='sexo'/>
+            <InputText id='sexo' value={student.sexo} onChange={inputChange} name='sexo' required/>
             <label htmlFor="sexo">Sexo</label>
         </span>
         <br></br>
         <span className="p-float-label">
-            <InputText id='edad' type='number' value={student.edad} onChange={inputChange} name='edad'/>
+            <InputText id='edad' type='number' value={student.edad} onChange={inputChange} name='edad' required/>
             <label htmlFor="edad">Edad</label>
         </span>
         <br></br>
@@ -162,7 +156,7 @@ const NEStudent = () => {
         onChange={dropdownChange}
         options={optionList} 
         optionLabel="name" 
-        placeholder="Seleccciona Materia" className="w-full md:w-14rem" />
+        placeholder="Seleccciona Materia" className="w-full md:w-14rem" required/>
 
         </Card>
     </div>
