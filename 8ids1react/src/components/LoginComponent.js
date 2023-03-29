@@ -10,8 +10,6 @@ import Swal from 'sweetalert2';
 import { useEffect } from 'react';
 import { Card } from 'primereact/card';
 
-
-
 const LoginComponent = () => {
 
 
@@ -79,7 +77,7 @@ const LoginComponent = () => {
       if(response.data.acceso === "Ok")
       {
         localStorage.setItem('token',"Ok")
-        navigateTo('/alumnos')
+        navigateTo('/menu')
       }
       else
       {
@@ -99,20 +97,26 @@ const LoginComponent = () => {
   }
 
   return (
-    <div>
-      
+    <div class="contenedor">
+      <Image src="https://cdn-icons-png.flaticon.com/512/5087/5087579.png" alt="Image" width="250" />
       <p>Ingresa tu usuario</p>
       <div className="card flex justify-content-center">
+      <span className="p-input-icon-left">
+          <i className="pi pi-user" />
           <InputText placeholder="example: user@email.com"
           id="correo" name="email" value={datosLogin.email} onChange={(e) => inputChange(e)} />
+          </span>
       </div>
       <br></br>
       <p>Ingresa tu contraseña:</p>
       <div className="card flex justify-content-center">
-          <Password id="cont" name="password" 
+      <span className="p-input-icon-left">
+          <i className="pi pi-key" />
+          <Password id="cont" name="password" type='password'
           value={datosLogin.password} 
           feedback={false}
           onChange={(e) => inputChange(e)} toggleMask/>
+                  </span>
       </div>
       <br></br>
       <div className="card flex justify-content-center">

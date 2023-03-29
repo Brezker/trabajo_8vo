@@ -44,11 +44,10 @@ const NESubject = () => {
             let errors = {};
             if (!data.nombre) {
                 errors.nombre = 'El nombre de la materia es requerido'
-            } else if (!/^[a-zA-Z]+(\s*[a-zA-Z]+[áéíóúÁÉÍÓÚ])[a-zA-ZñÑ]+$/.test(data.nombre)) {
+            } /*else if (!/^[a-zA-Z]+(\s*[a-zA-Z]+[áéíóúÁÉÍÓÚ])[a-zA-ZñÑ]+$/.test(data.nombre)) {
                 errors.nombre = 'Campo invalido';
-            }
+            }*/
 
-            
             if (!data.duracion) {
                 errors.duracion = 'Las horas son requeridas'
             } else if (!/^[0-9]+$/.test(data.duracion)) {
@@ -57,14 +56,11 @@ const NESubject = () => {
                 errors.duracion = 'Solo un máximo de 5 digitos';
             } 
 
-
-
             if (!data.profesor) {
                 errors.profesor = 'El nombre del profesor es requerido'
             } else if (!/^[a-zA-Z]+(\s*[a-zA-ZÁÉÍÓÚáéíúó])[a-zA-ZñÑ]+$/.test(data.profesor)) {
                 errors.profesor = 'Campo invalido';
             }
-
 
             if (!data.dias) {
                 errors.dias = 'Los dias a la semana en número son requeridos'
@@ -196,7 +192,7 @@ const NESubject = () => {
 
     return (
         <div>
-
+            <center>
             <Card title="Materia" subTitle="Subtitle" style={{ width: '25em' }}>
                 <form onSubmit={formik.handleSubmit} className="p-fluid">
                     <div className="field">
@@ -207,6 +203,7 @@ const NESubject = () => {
                         </span>
                         {getFormErrorMessage('nombre')}
                     </div>
+                    <br></br>
                     <div className="field">
                         <span className="p-float-label">
                             <InputText id='duracion' name='duracion' value={formik.values.duracion} onChange={formik.handleChange} className={classNames({ 'p-invalid': isFormFieldValid('duracion') })} />
@@ -214,7 +211,7 @@ const NESubject = () => {
                         </span>
                         {getFormErrorMessage('duracion')}
                     </div>
-
+                    <br></br>
                     <div className="field">
                         <span className="p-float-label">
                             <InputText id='profesor' name='profesor' value={formik.values.profesor} onChange={formik.handleChange} className={classNames({ 'p-invalid': isFormFieldValid('profesor') })} />
@@ -222,7 +219,7 @@ const NESubject = () => {
                         </span>
                         {getFormErrorMessage('profesor')}
                     </div>
-
+                    <br></br>
                     <div className="field">
                         <span className="p-float-label">
                             <InputText id='dias' name='dias' value={formik.values.dias} onChange={formik.handleChange} className={classNames({ 'p-invalid': isFormFieldValid('dias') })} />
@@ -230,14 +227,14 @@ const NESubject = () => {
                         </span>
                         {getFormErrorMessage('dias')}
                     </div>
-
-                    
+                    <br></br>
                     <span>
                         <Button type='submit' label="Save" icon="pi pi-check" />
                         <Button label="Cancel" icon="pi pi-times" onClick={volverVista} className="p-button-secondary ml-2" />
                     </span>
                 </form>
             </Card>
+            </center>
         </div>
     )
 }
