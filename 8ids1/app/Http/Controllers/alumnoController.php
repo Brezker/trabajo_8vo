@@ -35,7 +35,7 @@ class alumnoController extends Controller
             $alumno->sexo = $request->sexo;
             $alumno->edad = $request->edad;
 
-            $alumno->id_materia = $request->id_materia;
+            $alumno->id_materia = $request->json('id_materia.code');
         
             $alumno->save();
             

@@ -79,7 +79,7 @@ const LoginComponent = () => {
       </div>
       <br></br>
       <div className="card flex justify-content-center">
-        <Button label="Accesar" onClick={fn_login} />
+        <Button label="Acceder" onClick={fn_login} />
       </div>
     </div>
 

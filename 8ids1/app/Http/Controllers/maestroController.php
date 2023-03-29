@@ -35,7 +35,7 @@ class maestroController extends Controller
             $maestro->sexo = $request->sexo;
             $maestro->edad = $request->edad;
         
-            $maestro->id_materia = $request->id_materia;
+            $maestro->id_materia = $request->json('id_materia.code');
             
             $maestro->save();
             
